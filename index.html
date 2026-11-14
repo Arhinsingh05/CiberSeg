@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seguridad &amp; Ciberseguridad — Lorena Cabrera Singh &amp; Romano Reinaldo Carlos</title>
+<title>Seguridad &amp; Ciberseguridad — Cabrera Singh María Lorena del Valle &amp; Romano Reinaldo Carlos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -72,16 +72,16 @@
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line-1);
   }
-  .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1160px; margin:0 auto; }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1160px; margin:0 auto; position:relative; }
   .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .brand-mark{ width:34px; height:34px; }
+  .brand-mark{ width:42px; height:42px; object-fit:contain; border-radius:50%; flex:none; }
   .brand-text{ font-family:"Space Grotesk"; font-weight:700; color:var(--text-0); font-size:1.05rem; line-height:1.1; }
   .brand-text span{ display:block; font-family:"IBM Plex Mono"; font-weight:400; font-size:.65rem; color:var(--text-muted); letter-spacing:.02em; }
   .nav-links{ display:flex; gap:28px; list-style:none; margin:0; padding:0; }
   .nav-links a{ color:var(--text-1); text-decoration:none; font-size:.92rem; transition:color .15s; }
   .nav-links a:hover{ color:var(--cyan); }
   .nav-right{ display:flex; align-items:center; gap:14px; }
-  .nav-toggle{ display:none; background:none; border:1px solid var(--line-1); color:var(--text-0); width:38px;height:38px;border-radius:8px; cursor:pointer; }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--line-1); color:var(--text-0); width:38px;height:38px;border-radius:8px; cursor:pointer; font-size:1.15rem; }
 
   .sound-btn{
     display:flex; align-items:center; gap:8px;
@@ -177,13 +177,15 @@
     background:var(--bg-card); border:1px solid var(--line-1); border-radius:16px;
     padding:28px; text-align:center;
   }
-  .avatar-ring{ width:190px; height:190px; margin:0 auto 18px; }
+  .author-photo{ width:190px; height:190px; margin:0 auto 18px; border-radius:50%; object-fit:cover; border:3px solid var(--cyan-dim); display:block; }
   .avatar-name{ font-size:1.25rem; margin-bottom:2px; }
   .avatar-role{ color:var(--cyan); font-family:"IBM Plex Mono"; font-size:.78rem; margin-bottom:16px; }
   .inst-chip{
     background:var(--bg-card-2); border:1px solid var(--line-1); border-radius:10px;
     padding:12px 14px; text-align:left; font-family:"IBM Plex Mono"; font-size:.72rem; color:var(--text-muted); line-height:1.7;
   }
+  .inst-heading{ display:flex; align-items:center; gap:12px; margin-bottom:8px; color:var(--text-0); font-family:"Space Grotesk"; font-size:.95rem; font-weight:600; }
+  .inst-logo{ width:54px; height:54px; object-fit:contain; background:#fff; border-radius:50%; flex:none; }
   .inst-chip b{ color:var(--text-1); }
   .authors-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
   .video-card{
@@ -300,8 +302,10 @@
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width:920px){
-    .nav-links{ display:none; }
     .nav-toggle{ display:block; }
+    .nav-links{ display:none; position:absolute; top:100%; right:18px; z-index:5; flex-direction:column; gap:0; min-width:210px; padding:8px; background:var(--bg-card); border:1px solid var(--line-1); border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,.35); }
+    .nav-links.open{ display:flex; }
+    .nav-links a{ display:block; padding:10px 12px; }
     .hero-inner{ grid-template-columns:1fr; }
     .autora{ grid-template-columns:1fr; }
     .grid-4{ grid-template-columns:repeat(2,1fr); }
@@ -312,6 +316,15 @@
     section{ padding:70px 0; }
     .grid-4{ grid-template-columns:1fr; }
     .wrap{ padding:0 18px; }
+    .nav{ padding:12px 18px; gap:8px; }
+    .brand-mark{ width:36px; height:36px; }
+    .brand-text{ font-size:.9rem; }
+    .brand-text span{ font-size:.58rem; }
+    .nav-right{ gap:8px; }
+    .sound-btn{ padding:7px 9px; gap:0; }
+    #soundLabel{ display:none; }
+    .avatar-card{ padding:20px; }
+    .author-photo{ width:160px; height:160px; }
   }
 </style>
 </head>
@@ -321,13 +334,10 @@
 <header>
   <div class="nav">
     <a class="brand" href="#inicio">
-      <svg class="brand-mark" viewBox="0 0 40 40" fill="none">
-        <path d="M20 3 L34 9 V19 C34 28 28 34 20 37 C12 34 6 28 6 19 V9 Z" stroke="#00E5FF" stroke-width="2" fill="rgba(0,229,255,.08)"/>
-        <path d="M13 19.5 L17.5 24 L27 13" stroke="#00E5FF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
+      <img class="brand-mark" src="logo-ies.jpg" alt="Logo del IES Integración de las Américas">
       <span class="brand-text">SEGURIDAD&nbsp;&amp;&nbsp;CIBERSEGURIDAD<span>IES Integración de las Américas · Alderetes</span></span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="#autora">Sobre los autores</a></li>
       <li><a href="#conceptos">Conceptos</a></li>
       <li><a href="#delitos">Delitos</a></li>
@@ -335,6 +345,7 @@
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <div class="nav-right">
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navLinks">☰</button>
       <button class="sound-btn" id="soundBtn" aria-pressed="false">
         <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
         <span id="soundLabel">Música</span>
@@ -358,7 +369,8 @@
         <a href="#autora" class="btn btn-ghost">Ver video de presentación</a>
       </div>
       <div class="hero-credit">
-        Dictado por <b>Lorena Cabrera Singh</b> y <b>Romano Reinaldo Carlos</b> — Alumnos avanzados, Tecnicatura en Computación y Redes<br>
+        Alumnos avanzados: <b>Cabrera Singh María Lorena del Valle</b> y <b>Romano Reinaldo Carlos</b><br>
+        Profesor a cargo: <b>Pérez Díaz Carlos Rodolfo</b><br>
         IES Integración de las Américas — Extensión Áulica Alderetes
       </div>
     </div>
@@ -396,42 +408,32 @@
     <div class="section-head">
       <div class="section-tag">01 · Presentación</div>
       <h2>Sobre los autores</h2>
-      <p>Este es un proyecto realizado en conjunto por ambos, y esta es su presentación en video.</p>
+      <p>Proyecto realizado por Cabrera Singh María Lorena del Valle y Romano Reinaldo Carlos. Conocé la presentación audiovisual del trabajo.</p>
     </div>
     <div class="autora">
       <div>
         <div class="authors-row">
           <div class="avatar-card">
-            <svg class="avatar-ring zoomable" data-title="Lorena Cabrera Singh" data-desc="Alumna avanzada de la Tecnicatura en Computación y Redes en el IES Integración de las Américas, Extensión Áulica Alderetes. Coautora de este material de estudio sobre seguridad, ciberseguridad, delitos informáticos y prevención." viewBox="0 0 200 200" fill="none">
-              <circle cx="100" cy="100" r="92" stroke="#213056" stroke-width="2"/>
-              <circle cx="100" cy="100" r="92" stroke="#00E5FF" stroke-width="3" stroke-dasharray="120 480" stroke-linecap="round" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="80" r="30" fill="#111C31" stroke="#3B6FE0" stroke-width="2"/>
-              <path d="M55 165 C60 130 78 112 100 112 C122 112 140 130 145 165" fill="#111C31" stroke="#3B6FE0" stroke-width="2"/>
-            </svg>
-            <div class="avatar-name">Lorena Cabrera Singh</div>
-            <div class="avatar-role mono">Coautora del contenido</div>
+            <img class="author-photo" src="maria-lorena-cabrera-singh.jpg" alt="Retrato de Cabrera Singh María Lorena del Valle">
+            <div class="avatar-name">Cabrera Singh María Lorena del Valle</div>
+            <div class="avatar-role mono">Alumna avanzada · Coautora</div>
           </div>
           <div class="avatar-card">
-            <svg class="avatar-ring zoomable" data-title="Romano Reinaldo Carlos" data-desc="Alumno avanzado de la Tecnicatura en Computación y Redes en el IES Integración de las Américas, Extensión Áulica Alderetes. Coautor de este material de estudio sobre seguridad, ciberseguridad, delitos informáticos y prevención." viewBox="0 0 200 200" fill="none">
-              <circle cx="100" cy="100" r="92" stroke="#213056" stroke-width="2"/>
-              <circle cx="100" cy="100" r="92" stroke="#00E5FF" stroke-width="3" stroke-dasharray="120 480" stroke-linecap="round" transform="rotate(-90 100 100)"/>
-              <circle cx="100" cy="80" r="30" fill="#111C31" stroke="#3B6FE0" stroke-width="2"/>
-              <path d="M50 168 C56 128 76 112 100 112 C124 112 144 128 150 168" fill="#111C31" stroke="#3B6FE0" stroke-width="2"/>
-              <path d="M78 76 C78 62 118 60 122 76 C126 66 130 90 122 96 L120 84 C110 90 90 90 80 84 Z" fill="#3B6FE0"/>
-            </svg>
+            <img class="author-photo" src="reinaldo-carlos-romano.jpg" alt="Retrato de Romano Reinaldo Carlos">
             <div class="avatar-name">Romano Reinaldo Carlos</div>
-            <div class="avatar-role mono">Coautor del contenido</div>
+            <div class="avatar-role mono">Alumno avanzado · Coautor</div>
           </div>
         </div>
         <div class="inst-chip" style="margin-top:20px;">
-          <b>Institución:</b> IES Integración de las Américas<br>
+          <div class="inst-heading"><img class="inst-logo" src="logo-ies.jpg" alt=""><span>IES Integración de las Américas</span></div>
           <b>Sede:</b> Extensión Áulica Alderetes<br>
           <b>Carrera:</b> Tecnicatura en Computación y Redes<br>
-          <b>Rol:</b> Alumnos avanzados
+          <b>Alumnos avanzados:</b> Cabrera Singh María Lorena del Valle y Romano Reinaldo Carlos<br>
+          <b>Profesor a cargo:</b> Pérez Díaz Carlos Rodolfo
         </div>
       </div>
       <div>
-        <p>Este sitio nace como material de estudio y consulta sobre <b style="color:var(--text-0)">seguridad, ciberseguridad, delitos informáticos y prevención</b>, un proyecto realizado por Lorena Cabrera Singh y Romano Reinaldo Carlos para acompañar el proceso de formación dentro de la Tecnicatura en Computación y Redes.</p>
+        <p>Este sitio nace como material de estudio y consulta sobre <b style="color:var(--text-0)">seguridad, ciberseguridad, delitos informáticos y prevención</b>. Es un proyecto realizado por Cabrera Singh María Lorena del Valle y Romano Reinaldo Carlos, alumnos avanzados de la Tecnicatura en Computación y Redes, con el acompañamiento del profesor Pérez Díaz Carlos Rodolfo.</p>
         <p>El objetivo es simple: que cualquier persona, tenga o no conocimientos técnicos, pueda entender los riesgos reales del entorno digital y salir con herramientas concretas para prevenirlos, tanto en su vida personal como en un entorno laboral.</p>
         <div class="video-card video-card--native">
           <div class="frame">
@@ -660,7 +662,7 @@
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap foot-row">
-    <p>Lorena Cabrera Singh &amp; Romano Reinaldo Carlos · IES Integración de las Américas — Extensión Áulica Alderetes</p>
+    <p>Cabrera Singh María Lorena del Valle &amp; Romano Reinaldo Carlos · IES Integración de las Américas — Extensión Áulica Alderetes</p>
     <p>@ReinArhiN — Prohibida su reproducción sin autorización previa</p>
   </div>
 </footer>
@@ -683,6 +685,22 @@
 
 <script>
 (function(){
+  /* ---------- Mobile navigation ---------- */
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', function(){
+    var isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+  });
+  navLinks.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menú de navegación');
+    });
+  });
+
   /* ---------- Typewriter ---------- */
   var phrases = ["prevención de delitos_", "buenas prácticas digitales_", "identidad y datos protegidos_", "seguridad para todos_"];
   var el = document.getElementById('typeText');
